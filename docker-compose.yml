@@ -1,0 +1,39 @@
+version: '2'
+
+services:
+  queuing:
+    image: rabbitmq:latest
+    container_name: rabbitQueue
+    ports:
+      - 5672:5672
+    environment:
+      - RABBITMQ_HIPE_COMPILE= 1
+
+  web:
+    build: Web
+    container_name: web
+    ports:
+      - 8080:8080
+    depends_on:
+      - queuing
+      - hotel
+      - customer
+      - booking
+
+  hotel:
+    build: Hotel
+    container_name: Hotels
+    depends_on:
+       - queuing
+
+  customer:
+    build: Customer
+    container_name: Customers
+    depends_on:
+       - queuing
+
+  booking:
+    build: Booking
+    container_name: Bookings
+    depends_on:
+      - queuing
