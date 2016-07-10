@@ -16,13 +16,13 @@ services:
       - 8080:8080
     depends_on:
       - queuing
-      - hotel
+      - draw
       - customer
-      - booking
+      - notification
 
-  hotel:
-    build: Hotel
-    container_name: Hotels
+  notification:
+    build: BetService
+    container_name: Bets
     depends_on:
        - queuing
 
@@ -32,8 +32,14 @@ services:
     depends_on:
        - queuing
 
-  booking:
-    build: Booking
-    container_name: Bookings
+  draw:
+    build: DrawService
+    container_name: Draws
     depends_on:
       - queuing
+
+  notification:
+    build: NotificationService
+    container_name: Notification
+    depends_on:
+       - queing

@@ -11,8 +11,9 @@
 
   <modules>
     <module>Customer</module>    
-    <module>Hotel</module>
-    <module>Booking</module>
+    <module>DrawService</module>
+    <module>BetService</module>
+    <module>NotificationService</module>
     <module>Web</module>
   </modules>
 
