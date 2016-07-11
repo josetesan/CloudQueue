@@ -45,3 +45,11 @@ services:
     container_name: Notification
     depends_on:
        - queuing
+       - mail-server
+
+  mail-server:
+    image: mailhog/mailhog
+    container_name: mail
+    ports:
+       - 1025:1025
+       - 8025:8025
