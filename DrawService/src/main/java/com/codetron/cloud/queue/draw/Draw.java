@@ -9,11 +9,12 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 /**
  * Created by josetesan on 10/07/16.
  */
-@Table(name="HOTELS")
+@Table(name="DRAWS")
 @Entity
 @Getter
 @ToString
@@ -23,9 +24,7 @@ public class Draw implements Serializable {
     @Id
     private Long id;
 
-    private String name;
+    private String winningNumber;
 
-    private Integer rooms;
-
-    private BigDecimal price;
+    private LocalDate dateCreated;
 }
