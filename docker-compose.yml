@@ -3,7 +3,7 @@ version: '2'
 services:
   queuing:
     image: rabbitmq:latest
-    container_name: rabbitQueue
+    container_name: Queue
     ports:
       - 5671:5671
       - 5672:5672
@@ -12,7 +12,7 @@ services:
 
   web:
     build: Web
-    container_name: web
+    container_name: Web
     ports:
       - 8080:8080
     depends_on:
@@ -24,19 +24,19 @@ services:
 
   bet:
     build: BetService
-    container_name: Bets
+    container_name: Bet
     depends_on:
        - queuing
 
   customer:
     build: Customer
-    container_name: Customers
+    container_name: Customer
     depends_on:
        - queuing
 
   draw:
     build: DrawService
-    container_name: Draws
+    container_name: Draw
     depends_on:
       - queuing
 
@@ -49,7 +49,7 @@ services:
 
   mail-server:
     image: mailhog/mailhog
-    container_name: mail
+    container_name: Mail
     ports:
        - 1025:1025
        - 8025:8025

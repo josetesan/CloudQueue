@@ -16,7 +16,7 @@ import java.time.LocalDate;
  * Created by josetesan on 10/07/16.
  */
 @Entity
-@Table(name="BETS",indexes = {@Index(columnList = "hotelId"),@Index(columnList = "customerId")})
+@Table(name="NOTIFICATIONS",indexes = {@Index(columnList = "userId")})
 @Getter
 @ToString
 @Builder
@@ -25,16 +25,13 @@ public class Notification implements Serializable{
     @Id
     private Long id;
 
-    private Long customerId;
+    private String email;
 
+    private String number;
 
-    private Long hotelId;
+    private BigDecimal prize;
 
-    private LocalDate inDate;
-
-    private LocalDate outDate;
-
-    private BigDecimal price;
+    private LocalDate createDate;
 
 
 

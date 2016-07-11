@@ -3,3 +3,8 @@ spring:
         host: queuing
         username: guest
         password: guest
+
+    mail:
+       host: mail-server
+       port: 1025
+
