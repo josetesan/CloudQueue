@@ -1,4 +1,4 @@
-package com.codetron.cloud.queue.draw;
+package com.codetron.cloud.queue.customer;
 
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
@@ -10,7 +10,6 @@ import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import lombok.Getter;
 
 /**
  * Created by josete on 11/07/2016.
@@ -18,8 +17,8 @@ import lombok.Getter;
 @Configuration
 public class QueueConfiguration {
 
-    private String inQueueName = "IN.BET";
-    private String outQueueName = "OUT.DRAW";
+    private String inQueueName = "IN.WINNER";
+    private String outQueueName = "IN.NOTIFICATION";
 
     @Bean
     Queue inQueue() {
@@ -40,11 +39,11 @@ public class QueueConfiguration {
     }
 
     @Autowired
-    private DrawService drawService;
+    private CustomerService customerService;
 
     @Bean
     public Receiver receiver() {
-        return new Receiver(drawService);
+        return new Receiver(customerService);
     }
 
     @Bean
@@ -59,12 +58,12 @@ public class QueueConfiguration {
         container.setConnectionFactory(connectionFactory);
         container.addQueues(inQueue());
         container.setMessageListener(listenerAdapter());
-        container.setConcurrentConsumers(5);
+        container.setConcurrentConsumers(2);
         return container;
     }
 
     @Bean
     MessageListenerAdapter listenerAdapter() {
-        return new MessageListenerAdapter(receiver(), "createDraw");
+        return new MessageListenerAdapter(receiver(), "receiveUserData");
     }
 }

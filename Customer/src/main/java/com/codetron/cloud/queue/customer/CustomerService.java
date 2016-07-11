@@ -1,5 +1,6 @@
 package com.codetron.cloud.queue.customer;
 
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,14 @@ public class CustomerService {
 
 
     private CustomerRepository customerRepository;
+
+
+    private RabbitTemplate rabbitTemplate;
+
+    @Autowired
+    public void setRabbitTemplate(final RabbitTemplate rabbitTemplate) {
+        this.rabbitTemplate = rabbitTemplate;
+    }
 
     @Autowired
     public CustomerService(CustomerRepository customerRepository) {
@@ -31,5 +40,17 @@ public class CustomerService {
 
     public List<Customer> retrieveAll() {
         return this.customerRepository.findAll();
+    }
+
+    public void notifyWinner(final String email, final UserDTO user) {
+
+        final NotificationDTO notificationDTO = NotificationDTO.builder()
+                .email(email)
+                .number(user.getNumber())
+                .prize(user.getPrize())
+                .build();
+
+        this.rabbitTemplate.convertAndSend("IN.NOTIFICATION", notificationDTO);
+
     }
 }

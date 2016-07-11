@@ -53,12 +53,12 @@ public class QueueConfiguration {
 
 
     @Bean
-    SimpleMessageListenerContainer container(final ConnectionFactory connectionFactory,final  MessageListenerAdapter listenerAdapter) {
+    SimpleMessageListenerContainer container(final ConnectionFactory connectionFactory) {
         SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
         container.setConnectionFactory(connectionFactory);
-        container.setQueueNames(inQueueName);
-        container.setMessageListener(listenerAdapter);
-        container.setConcurrentConsumers(5);
+        container.addQueues(inQueue());
+        container.setMessageListener(listenerAdapter());
+        container.setConcurrentConsumers(2);
         return container;
     }
 

@@ -7,7 +7,6 @@ import org.springframework.amqp.core.TopicExchange;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
 import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -46,9 +45,6 @@ public class QueueConfiguration {
     }
 
 
-    @Autowired
-    private WinnersService winnersService;
-
     @Bean
     public Receiver receiver() {
         return new Receiver();
@@ -56,11 +52,11 @@ public class QueueConfiguration {
 
 
     @Bean
-    SimpleMessageListenerContainer container(final ConnectionFactory connectionFactory, final MessageListenerAdapter listenerAdapter) {
+    SimpleMessageListenerContainer container(final ConnectionFactory connectionFactory) {
         SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
         container.setConnectionFactory(connectionFactory);
-        container.setQueueNames(inQueueName);
-        container.setMessageListener(listenerAdapter);
+        container.addQueues(inBetsQueue());
+        container.setMessageListener(listenerAdapter());
         container.setConcurrentConsumers(5);
         return container;
     }
