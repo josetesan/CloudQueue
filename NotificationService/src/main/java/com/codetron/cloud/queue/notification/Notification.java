@@ -1,4 +1,4 @@
-package com.codetron.cloud.queue;
+package com.codetron.cloud.queue.notification;
 
 import lombok.Builder;
 import lombok.Getter;
