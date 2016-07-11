@@ -16,7 +16,7 @@ import java.time.LocalDate;
  * Created by josetesan on 10/07/16.
  */
 @Entity
-@Table(name="BETS",indexes = {@Index(columnList = "hotelId"),@Index(columnList = "customerId")})
+@Table(name="BETS",indexes = {@Index(columnList = "customerId")})
 @Getter
 @ToString
 @Builder
@@ -25,17 +25,11 @@ public class Bet implements Serializable{
     @Id
     private Long id;
 
-    private Long customerId;
+    private Long userId;
 
+    private String number;
 
-    private Long hotelId;
-
-    private LocalDate inDate;
-
-    private LocalDate outDate;
-
-    private BigDecimal price;
-
+    private LocalDate dateCreated;
 
 
 }
