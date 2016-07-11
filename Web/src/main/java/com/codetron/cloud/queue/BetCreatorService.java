@@ -28,7 +28,7 @@ public class BetCreatorService {
     public void createBet(final Long user, final String number) {
 
         final BetDTO betDTO = new BetDTO(user,number);
-        this.rabbitTemplate.convertAndSend(betDTO);
+        this.rabbitTemplate.convertAndSend("IN.BET",betDTO);
 
     }
 }

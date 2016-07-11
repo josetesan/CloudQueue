@@ -1,4 +1,4 @@
-package com.codetron.cloud.queue;
+package com.codetron.cloud.queue.bets;
 
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +41,6 @@ public class BetService {
     }
 
     public List<Bet> retrieveAllBetsByCustomerId(final Long customerId) {
-        return this.betRepository.findAllByCustomerId(customerId);
+        return this.betRepository.findAllByUserId(customerId);
     }
 }

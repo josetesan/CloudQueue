@@ -1,5 +1,6 @@
 spring:
     rabbitmq:
-        host: queuing
-        username: guest
-        password: guest
+        host: golden-kangaroo.rmq.cloudamqp.com
+        username: aahkhvlw
+        password: io_0vJ3NKxW6utXsjjz7zns61VutGcUf
+        port: 5671

@@ -1,4 +1,4 @@
-package com.codetron.cloud.queue;
+package com.codetron.cloud.queue.bets;
 
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
@@ -7,6 +7,7 @@ import org.springframework.amqp.core.TopicExchange;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
 import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -37,6 +38,14 @@ public class QueueConfiguration {
         return BindingBuilder.bind(inQueue()).to(exchange()).with(inQueueName);
     }
 
+    @Autowired
+    private BetService betService;
+
+    @Bean
+    public Receiver receiver() {
+        return new Receiver(betService);
+    }
+
     @Bean
     Binding outBinding() {
         return BindingBuilder.bind(outQueue()).to(exchange()).with(outQueueName);
@@ -54,12 +63,7 @@ public class QueueConfiguration {
     }
 
     @Bean
-    Receiver receiver() {
-        return new Receiver();
-    }
-
-    @Bean
-    MessageListenerAdapter listenerAdapter(final Receiver receiver) {
-        return new MessageListenerAdapter(receiver, "receiveBet");
+    MessageListenerAdapter listenerAdapter() {
+        return new MessageListenerAdapter(receiver(), "receiveBet");
     }
 }

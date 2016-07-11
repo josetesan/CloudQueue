@@ -1,4 +1,4 @@
-package com.codetron.cloud.queue;
+package com.codetron.cloud.queue.bets;
 
 
 import org.slf4j.Logger;
@@ -20,6 +20,8 @@ public class Receiver {
     public Receiver(BetService betService) {
         this.betService = betService;
     }
+
+
 
     public void receiveBet(final Bet bet) {
         LOGGER.info("Received a bet !, {}",bet);

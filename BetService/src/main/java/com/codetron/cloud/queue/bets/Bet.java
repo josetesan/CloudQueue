@@ -1,4 +1,4 @@
-package com.codetron.cloud.queue;
+package com.codetron.cloud.queue.bets;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -16,7 +16,7 @@ import java.time.LocalDate;
  * Created by josetesan on 10/07/16.
  */
 @Entity
-@Table(name="BETS",indexes = {@Index(columnList = "customerId")})
+@Table(name="BETS",indexes = {@Index(columnList = "userId")})
 @Getter
 @ToString
 @Builder

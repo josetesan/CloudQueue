@@ -1,4 +1,4 @@
-package com.codetron.cloud.queue;
+package com.codetron.cloud.queue.bets;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -13,6 +13,6 @@ import java.util.List;
 public interface BetRepository extends JpaRepository<Bet,Long>{
 
 
-    List<Bet> findAllByCustomerId(final Long customerId);
+    List<Bet> findAllByUserId(final Long userId);
 
 }
