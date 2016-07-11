@@ -5,6 +5,7 @@ services:
     image: rabbitmq:latest
     container_name: rabbitQueue
     ports:
+      - 5671:5671
       - 5672:5672
     environment:
       - RABBITMQ_HIPE_COMPILE= 1

@@ -1,6 +1,6 @@
 spring:
     rabbitmq:
-        host: golden-kangaroo.rmq.cloudamqp.com
-        username: aahkhvlw
-        password: io_0vJ3NKxW6utXsjjz7zns61VutGcUf
-        port: 5671
+        host: localhost
+        username: guest
+        password: guest
+        port: 5672
