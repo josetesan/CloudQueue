@@ -19,8 +19,9 @@ services:
       - draw
       - customer
       - notification
+      - bet
 
-  notification:
+  bet:
     build: BetService
     container_name: Bets
     depends_on:
