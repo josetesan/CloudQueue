@@ -16,7 +16,7 @@ import java.time.LocalDate;
  * Created by josetesan on 10/07/16.
  */
 @Entity
-@Table(name="NOTIFICATIONS",indexes = {@Index(columnList = "userId")})
+@Table(name="NOTIFICATIONS",indexes = {@Index(columnList = "email")})
 @Getter
 @ToString
 @Builder
