@@ -1,7 +1,7 @@
 version: '2'
 
 services:
-  queuing:
+  queue:
     image: rabbitmq:latest
     container_name: Queue
     ports:
@@ -14,38 +14,50 @@ services:
     build: Web
     container_name: Web
     ports:
-      - 8080:8080
+      - 9080:8080
     depends_on:
-      - queuing
+      - queue
       - draw
       - customer
       - notification
       - bet
+    links:
+      - queue  
 
   bet:
     build: BetService
     container_name: Bet
     depends_on:
-       - queuing
+       - queue
+    links:
+       - queue
 
   customer:
     build: Customer
     container_name: Customer
     depends_on:
-       - queuing
+       - queue
+    links:
+       - queue   
 
   draw:
     build: DrawService
     container_name: Draw
     depends_on:
-      - queuing
+      - queue
+    links:
+      - queue  
 
   notification:
     build: NotificationService
     container_name: Notification
     depends_on:
-       - queuing
+       - queue
        - mail-server
+    links:
+       - queue
+       - mail-server   
+       
 
   mail-server:
     image: mailhog/mailhog

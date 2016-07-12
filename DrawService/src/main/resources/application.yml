@@ -1,5 +1,5 @@
 spring:
     rabbitmq:
-        host: queuing
+        host: queue
         username: guest
         password: guest
