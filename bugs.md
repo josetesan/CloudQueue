@@ -2,4 +2,4 @@
 2. draw_1          | Caused by: java.lang.ClassNotFoundException: com.codetron.cloud.queue.web.BetDTO
 
 
-[http://stackoverflow.com/questions/38300784/amqprabbitmq-could-not-deserialize-object-classnotfoundexception|How to do rabbitQueues with spring-boot]
+["How to rabbit with Spring Boot"|http://stackoverflow.com/questions/38300784/amqprabbitmq-could-not-deserialize-object-classnotfoundexception]
