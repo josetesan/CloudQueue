@@ -33,7 +33,7 @@ public class Receiver {
 
     private DrawService drawService;
 
-    private final static Integer MAX_BETS = 10;
+    private final static Integer MAX_BETS = 9;
 
     @Autowired
     public Receiver(final DrawService drawService) {

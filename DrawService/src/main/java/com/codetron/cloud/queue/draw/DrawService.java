@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -36,9 +37,9 @@ public class DrawService {
 
     public void playDraw() {
 
-        final Random random = new Random(10);
+        final Integer random = LocalTime.now().getSecond() % 10;
 
-        final String winner = numbers.get(random.nextInt());
+        final String winner = numbers.get(random);
 
         LOGGER.info("Looks like we have a winner !!, {}", winner);
 
@@ -62,5 +63,6 @@ public class DrawService {
     public void storeNumber(final String number) {
         LOGGER.info("Adding {} to pot" , number);
         numbers.add(number);
+        LOGGER.info("Pot already have {}", numbers);
     }
 }
