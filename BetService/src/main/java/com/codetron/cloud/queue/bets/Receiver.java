@@ -35,4 +35,14 @@ public class Receiver {
             this.betService.createBet(bet);
         }
     }
+
+    @RabbitListener(bindings = @QueueBinding(
+            value = @Queue(value = "OUT.DRAW", durable = "false"),
+            exchange = @Exchange(value = "auto.exch", ignoreDeclarationExceptions = "true")))
+    public void receiveWinner(final String winner) {
+        LOGGER.info("Received the winner !!, {}",winner);
+        this.betService.notifyWinners(winner);
+
+    }
+
 }

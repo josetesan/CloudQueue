@@ -5,6 +5,8 @@
  ******************************************************************************/
 package com.codetron.cloud.queue.draw;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.annotation.Exchange;
 import org.springframework.amqp.rabbit.annotation.Queue;
 import org.springframework.amqp.rabbit.annotation.QueueBinding;
@@ -25,6 +27,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Component
 public class Receiver {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(Receiver.class);
 
     private static final AtomicInteger counter = new AtomicInteger(0);
 
@@ -41,12 +44,12 @@ public class Receiver {
             value = @Queue(value = "IN.DRAW", durable = "false"),
             exchange = @Exchange(value = "auto.exch", ignoreDeclarationExceptions = "true")))
     public void createDraw(final BetDTO bet) {
-
+        LOGGER.info("Draw received a bet {}", bet);
         if (counter.compareAndSet(MAX_BETS,0)) {
             // let's play draw !
             drawService.playDraw();
         } else {
-            counter.incrementAndGet();
+            LOGGER.info("Storing number, bets received {}",  counter.incrementAndGet());
             this.drawService.storeNumber(bet.getNumber());
         }
 

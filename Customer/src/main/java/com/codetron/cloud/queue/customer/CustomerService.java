@@ -24,7 +24,6 @@ public class CustomerService {
     @Lazy
     public void setRabbitTemplate(RabbitTemplate rabbitTemplate) {
         this.rabbitTemplate = rabbitTemplate;
-        this.rabbitTemplate.setMessageConverter(new Jackson2JsonMessageConverter());
     }
 
     @Autowired

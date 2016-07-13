@@ -32,7 +32,6 @@ public class DrawService {
     public DrawService(final DrawRepository drawRepository, final RabbitTemplate rabbitTemplate) {
         this.drawRepository = drawRepository;
         this.rabbitTemplate = rabbitTemplate;
-        this.rabbitTemplate.setMessageConverter(new Jackson2JsonMessageConverter());
     }
 
     public void playDraw() {

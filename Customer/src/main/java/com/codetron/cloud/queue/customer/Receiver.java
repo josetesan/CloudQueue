@@ -27,11 +27,13 @@ public class Receiver {
     }
 
     @RabbitListener(bindings = @QueueBinding(
-            value = @Queue(value = "IN.CUSTOMER", durable = "false"),
+            value = @Queue(value = "IN.WINNER", durable = "false"),
             exchange = @Exchange(value = "auto.exch", ignoreDeclarationExceptions = "true")))
     public void receiveUserData(final UserDTO user) {
         LOGGER.info("Received data for an user, {}",user);
         final Customer customer = this.customerService.retrieveCustomer(user.getId());
-        this.customerService.notifyWinner(customer.getEmail(), user);
+        if (null != customer) {
+            this.customerService.notifyWinner(customer.getEmail(), user);
+        } else LOGGER.error("Winner not found {}", user.getId());
     }
 }

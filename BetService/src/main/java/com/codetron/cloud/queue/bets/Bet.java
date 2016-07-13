@@ -21,7 +21,7 @@ import java.time.LocalDate;
  * Created by josetesan on 10/07/16.
  */
 @Entity
-@Table(name="BETS",indexes = {@Index(columnList = "userId")})
+@Table(name="BETS",indexes = {@Index(columnList = "userId"),@Index(columnList = "number")})
 @Getter
 @ToString
 @Builder
