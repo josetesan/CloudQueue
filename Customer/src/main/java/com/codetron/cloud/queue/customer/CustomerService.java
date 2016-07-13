@@ -1,7 +1,9 @@
 package com.codetron.cloud.queue.customer;
 
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,8 +21,10 @@ public class CustomerService {
     private RabbitTemplate rabbitTemplate;
 
     @Autowired
-    public void setRabbitTemplate(final RabbitTemplate rabbitTemplate) {
+    @Lazy
+    public void setRabbitTemplate(RabbitTemplate rabbitTemplate) {
         this.rabbitTemplate = rabbitTemplate;
+        this.rabbitTemplate.setMessageConverter(new Jackson2JsonMessageConverter());
     }
 
     @Autowired

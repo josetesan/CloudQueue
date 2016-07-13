@@ -21,11 +21,9 @@ public class Receiver {
     private CustomerService customerService;
 
 
-
-
     @Autowired
     public Receiver(final CustomerService customerService) {
-
+        this.customerService = customerService;
     }
 
     @RabbitListener(bindings = @QueueBinding(

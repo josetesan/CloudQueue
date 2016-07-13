@@ -1,6 +1,7 @@
 package com.codetron.cloud.queue.bets;
 
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
@@ -15,13 +16,10 @@ public class BetService {
 
     private BetRepository betRepository;
 
-    private RabbitTemplate rabbitTemplate;
-
     @Autowired
     @Lazy
-    public void setRabbitTemplate(RabbitTemplate rabbitTemplate) {
-        this.rabbitTemplate = rabbitTemplate;
-    }
+    private RabbitTemplate rabbitTemplate;
+
 
     @Autowired
     public BetService(BetRepository betRepository) {

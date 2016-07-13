@@ -10,6 +10,8 @@ import org.springframework.amqp.rabbit.annotation.Queue;
 import org.springframework.amqp.rabbit.annotation.QueueBinding;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -20,6 +22,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  ******************************************************************************
  * Created by jsanc on 11/07/16.
  */
+@Component
 public class Receiver {
 
 

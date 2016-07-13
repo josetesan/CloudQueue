@@ -10,6 +10,8 @@ import org.springframework.amqp.rabbit.annotation.Queue;
 import org.springframework.amqp.rabbit.annotation.QueueBinding;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 /**
  *****************************************************************************
@@ -19,6 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  ******************************************************************************
  * Created by jsanc on 11/07/16.
  */
+@Component
 public class Receiver {
 
     private NotificationService notificationService;

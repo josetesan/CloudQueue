@@ -3,3 +3,4 @@ spring:
         host: queue
         username: guest
         password: guest
+        port: 5762
