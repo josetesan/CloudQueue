@@ -14,7 +14,6 @@ import javax.persistence.Id;
 import javax.persistence.Index;
 import javax.persistence.Table;
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.time.LocalDate;
 
 /**
@@ -31,13 +30,9 @@ public class Bet implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @JsonIgnore
-    private Long id;
-
+    private Long betId;
     private Long userId;
-
     private String number;
-    @JsonIgnore
     private LocalDate dateCreated;
 
 

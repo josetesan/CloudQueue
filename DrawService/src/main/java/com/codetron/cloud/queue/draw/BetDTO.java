@@ -16,11 +16,13 @@ import lombok.ToString;
 @NoArgsConstructor
 public class BetDTO implements Serializable{
 
+    private Long betId;
     private Long userId;
     private String number;
     private LocalDate dateCreated;
 
     public BetDTO(Long userId, String number) {
+        this.betId = -1L;
         this.userId = userId;
         this.number = number;
         this.dateCreated = LocalDate.now();
