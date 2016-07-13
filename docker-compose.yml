@@ -1,7 +1,7 @@
 version: '2'
 
 services:
-  queue:
+  rabbit:
     image: rabbitmq:latest
     ports:
       - 5671:5671
@@ -14,42 +14,42 @@ services:
     ports:
       - 9080:8080
     depends_on:
-      - queue
+      - rabbit
       - draw
       - customer
       - notification
       - bet
     links:
-      - queue  
+      - rabbit:queue
 
   bet:
     build: BetService
     depends_on:
-       - queue
+       - rabbit
     links:
-       - queue
+       - rabbit:queue
 
   customer:
     build: Customer
     depends_on:
-       - queue
+       - rabbit
     links:
-       - queue   
+       - rabbit:queue
 
   draw:
     build: DrawService
     depends_on:
-      - queue
+      - rabbit
     links:
-      - queue  
+      - rabbit:queue
 
   notification:
     build: NotificationService
     depends_on:
-       - queue
+       - rabbit
        - mail-server
     links:
-       - queue
+       - rabbit:queue
        - mail-server   
        
 

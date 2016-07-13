@@ -18,6 +18,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
+	<prerequisites>
+		<maven>3.3</maven>
+gi	</prerequisites>
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
