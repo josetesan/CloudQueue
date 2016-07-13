@@ -3,6 +3,10 @@ package com.codetron.cloud.queue.bets;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.amqp.rabbit.annotation.Exchange;
+import org.springframework.amqp.rabbit.annotation.Queue;
+import org.springframework.amqp.rabbit.annotation.QueueBinding;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -22,7 +26,9 @@ public class Receiver {
     }
 
 
-
+    @RabbitListener(bindings = @QueueBinding(
+            value = @Queue(value = "IN.BET", durable = "false"),
+            exchange = @Exchange(value = "auto.exch", ignoreDeclarationExceptions = "true")))
     public void receiveBet(final Bet bet) {
         LOGGER.info("Received a bet !, {}",bet);
         if (this.betService.validateBet(bet)) {

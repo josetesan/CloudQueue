@@ -5,6 +5,10 @@
  ******************************************************************************/
 package com.codetron.cloud.queue.draw;
 
+import org.springframework.amqp.rabbit.annotation.Exchange;
+import org.springframework.amqp.rabbit.annotation.Queue;
+import org.springframework.amqp.rabbit.annotation.QueueBinding;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -30,6 +34,9 @@ public class Receiver {
         this.drawService = drawService;
     }
 
+    @RabbitListener(bindings = @QueueBinding(
+            value = @Queue(value = "IN.DRAW", durable = "false"),
+            exchange = @Exchange(value = "auto.exch", ignoreDeclarationExceptions = "true")))
     public void createDraw(final BetDTO bet) {
 
         if (counter.compareAndSet(MAX_BETS,0)) {

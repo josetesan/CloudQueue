@@ -1,7 +1,9 @@
 package com.codetron.cloud.queue.bets;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.Entity;
@@ -20,15 +22,17 @@ import java.time.LocalDate;
 @Getter
 @ToString
 @Builder
+@NoArgsConstructor
 public class Bet implements Serializable{
 
     @Id
+    @JsonIgnore
     private Long id;
 
     private Long userId;
 
     private String number;
-
+    @JsonIgnore
     private LocalDate dateCreated;
 
 

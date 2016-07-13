@@ -7,6 +7,10 @@ package com.codetron.cloud.queue.web;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.amqp.rabbit.annotation.Exchange;
+import org.springframework.amqp.rabbit.annotation.Queue;
+import org.springframework.amqp.rabbit.annotation.QueueBinding;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -30,6 +34,9 @@ public class Receiver {
         this.webBetsController = webBetsController;
     }
 
+    @RabbitListener(bindings = @QueueBinding(
+            value = @Queue(value = "OUT.WINNER", durable = "false"),
+            exchange = @Exchange(value = "auto.exch", ignoreDeclarationExceptions = "true")))
     public void receiveDrawWinner(final WinnerDTO winnerDTO) {
 
         LOGGER.info("Received winner !!, {}" , winnerDTO);
