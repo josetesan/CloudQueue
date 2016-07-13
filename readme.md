@@ -3,3 +3,4 @@
 
 
 ["How to rabbit with Spring Boot"|http://stackoverflow.com/questions/38300784/amqprabbitmq-could-not-deserialize-object-classnotfoundexception]
+http://docs.spring.io/spring-amqp/docs/1.6.0.RELEASE/reference/html/
