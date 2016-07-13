@@ -24,7 +24,7 @@ import lombok.ToString;
 @AllArgsConstructor
 public class WinnerDTO implements Serializable{
 
-    private Long userId;
+    private Long id;
     private String number;
     private BigDecimal prize;
 }

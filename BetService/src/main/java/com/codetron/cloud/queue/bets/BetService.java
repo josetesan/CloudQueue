@@ -61,5 +61,6 @@ public class BetService {
     private void notifyWinner(final WinnerDTO winner) {
         LOGGER.info("Notifying winner {}",winner);
         this.rabbitTemplate.convertAndSend("IN.WINNER", winner);
+        this.rabbitTemplate.convertAndSend("OUT.WINNER",winner);
     }
 }
