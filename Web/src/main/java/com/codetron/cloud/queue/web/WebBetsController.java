@@ -30,7 +30,8 @@ public class WebBetsController {
 
     @RequestMapping(value ="/bet/{USER}/{NUM}", method = RequestMethod.POST)
     public ResponseEntity<?> createBets(@PathVariable("USER") final Long user, @PathVariable("NUM") final String number) {
-
+	// clear previous winner DTO ( if any )
+	this.winnerDTO = null;
         this.betCreatorService.createBet(user, number);
         return ResponseEntity.status(HttpStatus.CREATED).build();
 
