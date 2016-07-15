@@ -18,8 +18,7 @@ public class WebBetsController {
 
 
     private BetCreatorService betCreatorService;
-    @Setter
-    private WinnerDTO winnerDTO;
+
 
     @Autowired
     public WebBetsController(BetCreatorService betCreatorService) {
@@ -38,8 +37,8 @@ public class WebBetsController {
 
     @RequestMapping(value ="/winner", method = RequestMethod.GET)
     public ResponseEntity<?> getWinner() {
-        if (null != winnerDTO) {
-            return ResponseEntity.ok(winnerDTO);
+        if (betCreatorService.getWinner().isPresent()) {
+            return ResponseEntity.ok(betCreatorService.getWinner().get());
         } else
             return ResponseEntity.notFound().build();
     }

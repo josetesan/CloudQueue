@@ -27,11 +27,11 @@ public class Receiver {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Receiver.class);
 
-    private WebBetsController webBetsController;
+    private BetCreatorService betCreatorService;
 
     @Autowired
-    public void setWebBetsController(final WebBetsController webBetsController) {
-        this.webBetsController = webBetsController;
+    public Receiver(BetCreatorService betCreatorService) {
+        this.betCreatorService = betCreatorService;
     }
 
     @RabbitListener(bindings = @QueueBinding(
@@ -40,7 +40,7 @@ public class Receiver {
     public void receiveDrawWinner(final WinnerDTO winnerDTO) {
 
         LOGGER.info("Received winner !!, {}" , winnerDTO);
-        this.webBetsController.setWinnerDTO(winnerDTO);
+        this.betCreatorService.setWinner(winnerDTO);
 
     }
 }

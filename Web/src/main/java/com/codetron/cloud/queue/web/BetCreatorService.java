@@ -1,10 +1,12 @@
 package com.codetron.cloud.queue.web;
 
+import lombok.Setter;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 /**
  * Created by josete on 11/07/2016.
@@ -14,6 +16,10 @@ public class BetCreatorService {
 
 
     private RabbitTemplate rabbitTemplate;
+
+
+    @Setter
+    private WinnerDTO winner;
 
     @Autowired
     @Lazy
@@ -32,4 +38,10 @@ public class BetCreatorService {
         this.rabbitTemplate.convertAndSend("IN.BET",betDTO);
 
     }
+
+    public Optional<WinnerDTO> getWinner() {
+        return Optional.ofNullable(winner);
+    }
+
+
 }
