@@ -6,6 +6,7 @@ services:
     ports:
       - 5671:5671
       - 5672:5672
+#    This variable speeds up rabbitMQ runtime, but make it slower to startup
 #    environment:
 #      - RABBITMQ_HIPE_COMPILE= 1
 
