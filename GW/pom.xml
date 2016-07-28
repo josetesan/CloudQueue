@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.codetron.cloud.queue</groupId>
-	<artifactId>Web</artifactId>
+	<artifactId>GW</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>Web</name>
+	<name>GW</name>
 	<description>Demo project for Spring Boot</description>
 
 	<parent>

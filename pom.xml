@@ -14,7 +14,7 @@
     <module>DrawService</module>
     <module>BetService</module>
     <module>NotificationService</module>
-    <module>Web</module>
+    <module>GW</module>
   </modules>
 
 

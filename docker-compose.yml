@@ -10,8 +10,8 @@ services:
 #    environment:
 #      - RABBITMQ_HIPE_COMPILE= 1
 
-  web:
-    build: Web
+  gw:
+    build: GW
     ports:
       - 9080:8080
     depends_on:
