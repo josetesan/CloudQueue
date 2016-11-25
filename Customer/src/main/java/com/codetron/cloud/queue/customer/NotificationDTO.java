@@ -5,12 +5,13 @@
  ******************************************************************************/
 package com.codetron.cloud.queue.customer;
 
-import java.io.Serializable;
-import java.math.BigDecimal;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
 
 /**
  *****************************************************************************

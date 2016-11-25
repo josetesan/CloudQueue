@@ -5,11 +5,12 @@
  ******************************************************************************/
 package com.codetron.cloud.queue.notification;
 
-import java.io.Serializable;
-import java.math.BigDecimal;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.ToString;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
 
 /**
  *****************************************************************************

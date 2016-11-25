@@ -3,9 +3,7 @@ package com.codetron.cloud.queue.bets;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,15 +17,13 @@ public class BetService {
     private static final Logger LOGGER  = LoggerFactory.getLogger(BetService.class);
 
     private BetRepository betRepository;
-
-    @Autowired
-    @Lazy
-    private RabbitTemplate rabbitTemplate;
+    private final RabbitTemplate rabbitTemplate;
 
 
     @Autowired
-    public BetService(BetRepository betRepository) {
+    public BetService(BetRepository betRepository, RabbitTemplate rabbitTemplate) {
         this.betRepository = betRepository;
+        this.rabbitTemplate = rabbitTemplate;
     }
 
     public Bet createBet(final Bet bet) {
@@ -54,8 +50,8 @@ public class BetService {
 
         this.betRepository.findAllByNumber(winno)
                 .stream()
-                .map(bet -> new WinnerDTO(bet))
-                .forEach(winner -> notifyWinner(winner));
+                .map(WinnerDTO::new)
+                .forEach(this::notifyWinner);
     }
 
     private void notifyWinner(final WinnerDTO winner) {

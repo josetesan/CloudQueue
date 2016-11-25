@@ -1,6 +1,5 @@
 package com.codetron.cloud.queue.bets;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
