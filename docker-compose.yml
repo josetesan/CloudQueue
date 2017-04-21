@@ -2,12 +2,13 @@ version: '2'
 
 services:
   rabbit:
-    image: rabbitmq:latest
+    image: rabbitmq:3-management-alpine
     ports:
       - 5671:5671
       - 5672:5672
-#    This variable speeds up rabbitMQ runtime, but make it slower to startup
+      - 15672:15672
 #    environment:
+#    This variable speeds up rabbitMQ runtime, but make it slower to startup
 #      - RABBITMQ_HIPE_COMPILE= 1
 
   gw:
