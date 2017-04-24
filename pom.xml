@@ -3,8 +3,8 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.codetron</groupId>
   <artifactId>cloud-queue</artifactId>
-  <packaging>pom</packaging>
   <version>1.0-SNAPSHOT</version>
+  <packaging>pom</packaging>    
   <name>Cloud Demo</name>
   <description>Cloud Queue Demo</description>
   <inceptionYear>2016</inceptionYear>
