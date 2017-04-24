@@ -3,16 +3,30 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.codetron</groupId>
   <artifactId>cloud-queue</artifactId>
-  <packaging>pom</packaging>
-  <version>latest-SNAPSHOT</version>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>pom</packaging>    
   <name>Cloud Demo</name>
   <description>Cloud Queue Demo</description>
   <inceptionYear>2016</inceptionYear>
 
+  <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.5.3.RELEASE</version>
+  </parent>
 
+
+  <prerequisites>
+  		<maven>3.3</maven>
+  </prerequisites>
+
+  <properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<java.version>1.8</java.version>
+	</properties>
 
   <modules>
-    <module>Customer</module>    
+    <module>Customer</module>
     <module>DrawService</module>
     <module>BetService</module>
     <module>NotificationService</module>
@@ -20,5 +34,5 @@
   </modules>
 
 
- 
+
 </project>

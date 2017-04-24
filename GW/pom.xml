@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.codetron.cloud.queue</groupId>
+	<groupId>com.codetron.cloud-queue</groupId>
 	<artifactId>GW</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
@@ -11,20 +11,16 @@
 	<name>GW</name>
 	<description>Demo project for Spring Boot</description>
 
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.5.3.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
-	</parent>
 
-	<prerequisites>
-		<maven>3.3</maven>
-	</prerequisites>
+	<parent>
+				 <groupId>com.codetron</groupId>
+				 <artifactId>cloud-queue</artifactId>
+				 <version>1.0-SNAPSHOT</version>
+				 <relativePath>../pom.xml</relativePath>
+ 	</parent>
+
 
 	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<java.version>1.8</java.version>
 		<!--<thymeleaf.version>3.0.0.RELEASE</thymeleaf.version>-->
 		<!--<thymeleaf-extras-springsecurity4.version>3.0.0.RELEASE</thymeleaf-extras-springsecurity4.version>-->
 		<!--<thymeleaf-extras-conditionalcomments.version>3.0.0.RELEASE</thymeleaf-extras-conditionalcomments.version>-->
@@ -76,7 +72,7 @@
 	</dependencies>
 
 
-	
+
 	<build>
 		<plugins>
 			<plugin>
@@ -85,7 +81,7 @@
 			</plugin>
 		</plugins>
 	</build>
-	
+
 	<repositories>
 
 		<repository>
