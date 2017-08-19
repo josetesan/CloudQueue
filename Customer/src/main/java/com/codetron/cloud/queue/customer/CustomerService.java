@@ -32,7 +32,7 @@ public class CustomerService {
 
 
     public Customer retrieveCustomer(final Long id) {
-        return this.customerRepository.findOne(id);
+        return this.customerRepository.getOne(id);
     }
 
     public Customer saveCustomer(final Customer customer) {
