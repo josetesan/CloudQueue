@@ -4,8 +4,9 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
-import java.util.List;
 
 /**
  * Created by josetesan on 10/07/16.
@@ -15,7 +16,6 @@ public class CustomerService {
 
 
     private CustomerRepository customerRepository;
-
 
     private RabbitTemplate rabbitTemplate;
 
@@ -31,20 +31,20 @@ public class CustomerService {
     }
 
 
-    public Customer retrieveCustomer(final Long id) {
-        return this.customerRepository.getOne(id);
+    public Mono<Customer> retrieveCustomer(final Long id) {
+        return this.customerRepository.findById(id);
     }
 
-    public Customer saveCustomer(final Customer customer) {
+    public Mono<Customer> saveCustomer(final Customer customer) {
         return this.customerRepository.save(customer);
     }
 
 
-    public List<Customer> retrieveAll() {
+    public Flux<Customer> retrieveAll() {
         return this.customerRepository.findAll();
     }
 
-    public void notifyWinner(final String email, final UserDTO user) {
+    public Mono<Void> notifyWinner(final String email, final UserDTO user) {
 
         final NotificationDTO notificationDTO = NotificationDTO.builder()
                 .email(email)
@@ -53,6 +53,7 @@ public class CustomerService {
                 .build();
 
         this.rabbitTemplate.convertAndSend("IN.NOTIFICATION", notificationDTO);
+        return Mono.empty();
 
     }
 }

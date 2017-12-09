@@ -20,7 +20,6 @@ public class Receiver {
 
     private CustomerService customerService;
 
-
     @Autowired
     public Receiver(final CustomerService customerService) {
         this.customerService = customerService;
@@ -31,9 +30,10 @@ public class Receiver {
             exchange = @Exchange(value = "auto.exch", ignoreDeclarationExceptions = "true")))
     public void receiveUserData(final UserDTO user) {
         LOGGER.info("Received data for an user, {}",user);
-        final Customer customer = this.customerService.retrieveCustomer(user.getId());
-        if (null != customer) {
-            this.customerService.notifyWinner(customer.getEmail(), user);
-        } else LOGGER.error("Winner not found {}", user.getId());
+        this.customerService
+                .retrieveCustomer(user.getId())
+                .map(c -> this.customerService.notifyWinner(c.getEmail(), user))
+                .subscribe();
+        LOGGER.error("Winner not found {}", user.getId());
     }
 }
