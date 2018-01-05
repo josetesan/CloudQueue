@@ -1,4 +1,4 @@
-FROM anapsix/alpine-java:jre8
+FROM anapsix/alpine-java:9
 ADD target/*.jar /app.jar
 RUN bash -c 'touch /app.jar'
 EXPOSE 8080
