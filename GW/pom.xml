@@ -17,15 +17,6 @@
     <name>GW</name>
     <description>Demo project for Spring Boot</description>
 
-    <!--<properties>-->
-    <!--<thymeleaf.version>3.0.0.RELEASE</thymeleaf.version>-->
-    <!--<thymeleaf-extras-springsecurity4.version>3.0.0.RELEASE</thymeleaf-extras-springsecurity4.version>-->
-    <!--<thymeleaf-extras-conditionalcomments.version>3.0.0.RELEASE</thymeleaf-extras-conditionalcomments.version>-->
-    <!--<thymeleaf-layout-dialect.version>2.0.0</thymeleaf-layout-dialect.version>-->
-    <!--<thymeleaf-extras-data-attribute.version>2.0.1</thymeleaf-extras-data-attribute.version>-->
-    <!--<thymeleaf-extras-java8time.version>3.0.0.RELEASE</thymeleaf-extras-java8time.version>-->
-
-    <!--</properties>-->
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -38,7 +29,7 @@
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <artifactId>spring-boot-starter-webflux</artifactId>
         </dependency>
 
         <dependency>
@@ -61,7 +52,7 @@
 		<dependency>
 			<groupId>javax.xml.bind</groupId>
 			<artifactId>jaxb-api</artifactId>
-			<version>2.3.0</version>
+            <version>${jaxb.version}</version>
 		</dependency>
 		
         <dependency>
