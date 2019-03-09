@@ -1,6 +1,13 @@
 version: '3'
 
 services:
+
+  cassandra:
+    image: cassandra:3
+    ports:
+      - 9042:9042
+      - 9160:9160
+
   rabbit:
     image: rabbitmq:3.7-management-alpine
     ports:
@@ -23,27 +30,34 @@ services:
       - bet
     links:
       - rabbit:queue
+      - cassandra:database
 
   bet:
     build: BetService
     depends_on:
        - rabbit
+       - cassandra
     links:
        - rabbit:queue
+       - cassandra:database
 
   customer:
     build: Customer
     depends_on:
        - rabbit
+       - cassandra
     links:
        - rabbit:queue
+       - cassandra:database
 
   draw:
     build: DrawService
     depends_on:
       - rabbit
+      - cassandra
     links:
       - rabbit:queue
+      - cassandra:database
 
   notification:
     build: NotificationService
@@ -52,8 +66,8 @@ services:
        - mail-server
     links:
        - rabbit:queue
-       - mail-server   
-       
+       - mail-server
+       - cassandra:database
 
   mail-server:
     image: mailhog/mailhog

@@ -4,3 +4,4 @@ spring:
         username: guest
         password: guest
         port: 5672
+
